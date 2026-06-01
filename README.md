@@ -1,14 +1,16 @@
 # \# 🍞 우리는 '만나'예요! - 전도 \& 중보기도팀
 
-# https://faith-0306.github.io/Manna\_Fair\_Web/
+# 
 
+# 👉 \[여기를 누르면 '만나' 웹사이트로 바로 이동합니다!](https://faith-0306.github.io/Manna\_Fair\_Web/)
 
+# 
 
 # > \*\*"매일 매일 내려오는 특별한 선물, 만나! 당신의 오늘이 더 달콤해지도록 우리가 함께 기도하고 전할게요."\*\* 💛
 
 # 
 
-# 리즈 청년부에서 전도와 중보기도를 맡고 있는 \*\*만나(Manna) 팀\*\*의 공식 웹사이트 저장소입니다.
+# 리즈 청년부에서 전도와 중보기도를 맡고 있는 \*\*만나(Manna) 팀\*\*의 공식 웹사이트 저장소입니다. 
 
 # 
 
@@ -38,7 +40,7 @@
 
 # \* \*\*Frontend:\*\* HTML5, Tailwind CSS, Font Awesome (Icons)
 
-# \* \*\*Database / Backend:\*\* Firebase Realtime Database (실시간 데이터 동기화)
+# \* \*\*Database / Backend:\*\* Firebase Realtime Database
 
 # \* \*\*Hosting:\*\* GitHub Pages
 
