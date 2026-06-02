@@ -654,7 +654,7 @@
     </div>
 
     <script>
-        // 함께하고 싶어요 팝업 열기/닫기 로직
+// 함께하고 싶어요 팝업 열기/닫기 로직 (맨 마지막에 추가)
         function openJoinModal() {
             const modal = document.getElementById('join-modal');
             const content = document.getElementById('join-modal-content');
@@ -662,7 +662,6 @@
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
             
-            // 부드러운 애니메이션 효과
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 content.classList.remove('scale-95');
