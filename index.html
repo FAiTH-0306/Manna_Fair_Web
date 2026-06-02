@@ -453,10 +453,10 @@
             <form onsubmit="event.preventDefault(); handleWallSubmit();"
                 class="relative flex items-center bg-white rounded-full border-2 border-yellow-200 p-1 shadow-sm overflow-hidden">
                 <input type="text" id="wall-input" maxlength="30"
-                    class="flex-grow bg-transparent px-5 py-3 focus:outline-none text-sm font-medium"
+                    class="flex-grow min-w-0 bg-transparent px-5 py-3 focus:outline-none text-sm font-medium"
                     placeholder="따뜻한 한마디 남기기..">
                 <button type="submit"
-                    class="w-12 h-12 bg-yellow-400 text-yellow-950 rounded-full flex items-center justify-center bouncy">
+                    class="w-12 h-12 shrink-0 bg-yellow-400 text-yellow-950 rounded-full flex items-center justify-center bouncy">
                     <i class="fa-solid fa-pencil"></i>
                 </button>
             </form>
