@@ -620,11 +620,10 @@
                     <span class="font-bold text-yellow-950 text-sm sm:text-base ml-2 text-right">푸른풀밭, 그릿시냇가</span>
                 </div>
             </div>
-            <button onclick="setTimeout(() => alert('만나와 함께하고 싶으시다면 주변의 만나 팀원 또는 이정석 팀장님께 말씀해 주세요! 💛'), 100)"
-                class="w-full py-5 bg-gradient-to-r from-yellow-400 to-amber-400 text-yellow-950 rounded-full title-bold text-xl border-b-4 border-amber-500 shadow-lg shadow-yellow-200/80 hover:brightness-105 transition-all flex items-center justify-center gap-3 btn-active-press">
-                <i class="fa-solid fa-heart text-rose-500 animate-pulse"></i> 함께하고 싶어요! <i
-                    class="fa-solid fa-heart text-rose-500 animate-pulse"></i>
-            </button>
+            <button onclick="openJoinModal()"
+    class="w-full py-5 bg-gradient-to-r from-yellow-400 to-amber-400 text-yellow-950 rounded-full title-bold text-xl border-b-4 border-amber-500 shadow-lg shadow-yellow-200/80 hover:brightness-105 transition-all flex items-center justify-center gap-3 btn-active-press">
+    <i class="fa-solid fa-heart text-rose-500 animate-pulse"></i> 함께하고 싶어요! <i class="fa-solid fa-heart text-rose-500 animate-pulse"></i>
+</button>
         </div>
     </section>
 
@@ -636,21 +635,55 @@
         <p class="text-[10px] text-gray-400 mt-2">© 2026 Manna</p>
     </footer>
 
-    <!-- 모달 -->
-    <div id="gallery-modal">
-        <button onclick="closeGallery()"
-            class="absolute top-6 right-6 text-white text-3xl z-[10001] w-12 h-12 bg-white/10 rounded-full flex items-center justify-center"><i
-                class="fa-solid fa-xmark"></i></button>
-        <div class="slider-wrapper" onclick="event.stopPropagation()">
-            <button onclick="moveSlide(-1)" class="nav-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-            <div id="slider-container" class="slider-container">
-                <div id="slider-track" class="slider-track"></div>
-            </div>
-            <button onclick="moveSlide(1)" class="nav-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+<!-- 💡 함께하고 싶어요 커스텀 팝업창 -->
+    <div id="join-modal" class="fixed inset-0 z-[10005] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white border-2 border-yellow-200 rounded-[2.5rem] p-8 w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300" id="join-modal-content">
+            <div class="text-5xl mb-4">💌</div>
+            <h3 class="font-gaegu text-3xl title-bold text-yellow-900 mb-3">만나와 함께해요!</h3>
+            <p class="text-gray-700 font-medium leading-relaxed mb-6 text-sm">
+                만나 팀에 관심이 생기셨나요?<br>
+                주변의 <span class="text-yellow-600 font-bold">만나 팀원</span>이나<br>
+                <span class="text-yellow-600 font-bold">이정석 팀장님</span>께 말씀해 주시면<br>
+                언제든 따뜻하게 환영합니다! 💛
+            </p>
+            <button onclick="closeJoinModal()" 
+                class="w-full py-3.5 bg-yellow-400 text-yellow-950 rounded-full title-bold text-lg border-b-4 border-yellow-500 hover:brightness-105 transition-all bouncy">
+                확인했습니다!
+            </button>
         </div>
-        <p id="modal-title" class="font-gaegu text-2xl text-white mt-8 title-bold"></p>
-        <div id="slide-dots" class="flex gap-2 mt-4"></div>
     </div>
+
+    <script>
+        // 함께하고 싶어요 팝업 열기/닫기 로직
+        function openJoinModal() {
+            const modal = document.getElementById('join-modal');
+            const content = document.getElementById('join-modal-content');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            
+            // 부드러운 애니메이션 효과
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeJoinModal() {
+            const modal = document.getElementById('join-modal');
+            const content = document.getElementById('join-modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+    </script>
 
     <script>
         // Reveal Observer
