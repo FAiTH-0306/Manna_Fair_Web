@@ -222,19 +222,23 @@
 
         /* 모달 슬라이더 */
         #gallery-modal {
-            display: none;
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.92);
             z-index: 10000;
             backdrop-filter: blur(15px);
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
         #gallery-modal.active {
-            display: flex;
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .slider-wrapper {
@@ -244,6 +248,37 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transform: scale(0.9) translateY(30px);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+        }
+
+        #gallery-modal.active .slider-wrapper {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        #modal-title, #slide-dots {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s, opacity 0.4s ease 0.08s;
+        }
+
+        #gallery-modal.active #modal-title,
+        #gallery-modal.active #slide-dots {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #gallery-modal .absolute.top-6.right-6 {
+            opacity: 0;
+            transform: rotate(-90deg) scale(0.7);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, opacity 0.4s ease 0.15s;
+        }
+
+        #gallery-modal.active .absolute.top-6.right-6 {
+            opacity: 1;
+            transform: rotate(0) scale(1);
         }
 
         .slider-container {
