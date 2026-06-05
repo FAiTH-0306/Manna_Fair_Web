@@ -403,8 +403,14 @@
     </section>
 
     <!-- 갤러리 섹션 -->
-    <section class="py-20 px-4 bg-white">
-        <div class="max-w-md mx-auto">
+    <section class="py-20 px-4 bg-gradient-to-b from-[#fffef2] via-[#fffaf0] to-[#f7f3e9] relative overflow-hidden">
+        <!-- 배경 부드러운 그라데이션 데코레이션 블롭 -->
+        <div class="absolute -top-10 -left-10 w-40 h-40 bg-yellow-200/30 rounded-full blur-2xl pointer-events-none">
+        </div>
+        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-rose-200/25 rounded-full blur-2xl pointer-events-none">
+        </div>
+
+        <div class="max-w-md mx-auto relative z-10">
             <div class="text-center mb-10 reveal">
                 <span
                     class="bg-rose-100 text-rose-500 px-4 py-1 rounded-full text-[10px] font-bold mb-3 inline-block tracking-widest">OUR
@@ -620,7 +626,7 @@
                     <span class="font-bold text-yellow-950 text-sm sm:text-base ml-2 text-right">푸른풀밭, 그릿시냇가</span>
                 </div>
             </div>
-            <button onclick="setTimeout(() => alert('만나와 함께하고 싶으시다면 주변의 만나 팀원 또는 이정석 팀장님께 말씀해 주세요! 💛'), 100)"
+            <button onclick="openJoinModal()"
                 class="w-full py-5 bg-gradient-to-r from-yellow-400 to-amber-400 text-yellow-950 rounded-full title-bold text-xl border-b-4 border-amber-500 shadow-lg shadow-yellow-200/80 hover:brightness-105 transition-all flex items-center justify-center gap-3 btn-active-press">
                 <i class="fa-solid fa-heart text-rose-500 animate-pulse"></i> 함께하고 싶어요! <i
                     class="fa-solid fa-heart text-rose-500 animate-pulse"></i>
@@ -652,6 +658,42 @@
         <div id="slide-dots" class="flex gap-2 mt-4"></div>
     </div>
 
+    <!-- 함께하고 싶어요 모달 -->
+    <div id="join-modal"
+        class="fixed inset-0 z-[11000] flex items-center justify-center p-6 bg-black/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300"
+        onclick="closeJoinModal()">
+        <div class="relative w-full max-w-sm bg-white rounded-[2.5rem] p-8 text-center shadow-2xl border-2 border-yellow-200 transform scale-95 transition-all duration-300"
+            id="join-modal-card" onclick="event.stopPropagation()">
+            <!-- 닫기 버튼 -->
+            <button onclick="closeJoinModal()"
+                class="absolute top-5 right-5 text-yellow-950/40 hover:text-yellow-950 transition-colors w-8 h-8 flex items-center justify-center rounded-full bg-yellow-50">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- 데코 아이콘 -->
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-yellow-100 rounded-full mb-6 relative">
+                <div class="absolute inset-0 bg-yellow-200/50 rounded-full animate-ping opacity-75"></div>
+                <i class="fa-solid fa-heart text-rose-500 text-4xl relative"></i>
+            </div>
+
+            <!-- 제목 -->
+            <h3 class="font-gaegu text-3xl title-bold text-yellow-950 mb-3">만나와 함께 해요! 💛</h3>
+
+            <!-- 본문 내용 -->
+            <p class="text-sm font-medium text-gray-600 leading-relaxed mb-6 px-2">
+                만나와 함께하고 싶으시다면<br>
+                주변의 <span class="text-yellow-600 font-bold">만나 팀원</span> 또는<br>
+                <span class="text-yellow-600 font-bold">이정석 팀장님</span>께 말씀해 주세요!
+            </p>
+
+            <!-- 확인 버튼 -->
+            <button onclick="closeJoinModal()"
+                class="w-full py-4 bg-yellow-400 text-yellow-950 rounded-full title-bold text-lg border-b-4 border-yellow-500 shadow-lg shadow-yellow-200 transition-all btn-active-press">
+                확인
+            </button>
+        </div>
+    </div>
+
     <script>
         // Reveal Observer
         const observer = new IntersectionObserver((entries) => {
@@ -665,7 +707,7 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// 갤러리 데이터 (모든 섹션 실제 이미지 경로 반영 및 문법 검수 완료)
+        // 갤러리 데이터 (모든 섹션 실제 이미지 경로 반영 및 문법 검수 완료)
         const galleryContent = {
             sharing: {
                 title: "사랑을 전하는 복음 배달",
@@ -683,16 +725,16 @@
                     "Image/Delivery/Photo 11.jpg"
                 ]
             },
-            praying: { 
-                title: "마음을 모으는 중보기도", 
+            praying: {
+                title: "마음을 모으는 중보기도",
                 images: [
                     "Image/Pray/Photo 01.jpg",
                     "Image/Pray/Photo 02.jpg",
                     "Image/Pray/Photo 03.jpg"
-                ] 
+                ]
             },
-            fellowship: { 
-                title: "웃음꽃 피는 우리들의 교제", 
+            fellowship: {
+                title: "웃음꽃 피는 우리들의 교제",
                 images: [
                     "Image/Meet/Photo 01.jpg",
                     "Image/Meet/Photo 02.jpg",
@@ -702,10 +744,10 @@
                     "Image/Meet/Photo 06.jpg",
                     "Image/Meet/Photo 07.jpg",
                     "Image/Meet/Photo 08.jpg"
-                ] 
+                ]
             },
-            manna: { 
-                title: "하늘에서 내려온 선물, 만나", 
+            manna: {
+                title: "하늘에서 내려온 선물, 만나",
                 images: [
                     "Image/Together/Photo_01.jpg",
                     "Image/Together/Photo_02.jpg",
@@ -721,7 +763,7 @@
                     "Image/Together/Photo_12.jpg",
                     "Image/Together/Photo_13.jpg",
                     "Image/Together/Photo_14.jpg"
-                ] 
+                ]
             }
         };
         function initAutoSlides() {
@@ -759,6 +801,24 @@
             updateSlide();
         }
         function closeGallery() { document.getElementById('gallery-modal').classList.remove('active'); document.body.style.overflow = ''; }
+        function openJoinModal() {
+            const modal = document.getElementById('join-modal');
+            const card = document.getElementById('join-modal-card');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100', 'pointer-events-auto');
+            card.classList.remove('scale-95');
+            card.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeJoinModal() {
+            const modal = document.getElementById('join-modal');
+            const card = document.getElementById('join-modal-card');
+            modal.classList.remove('opacity-100', 'pointer-events-auto');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            document.body.style.overflow = '';
+        }
         function moveSlide(dir) { currentSlide = (currentSlide + dir + slideData.length) % slideData.length; updateSlide(); }
         function updateSlide() {
             document.getElementById('slider-track').style.transform = `translateX(-${currentSlide * 100}%)`;
