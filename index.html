@@ -999,6 +999,11 @@
                 return;
             }
 
+            // 고정할 카드 높이 측정 및 설정하여 전송 완료 상태 전환 시 창 크기 고정
+            const card = document.getElementById('prayer-card');
+            const currentHeight = card.offsetHeight;
+            card.style.height = `${currentHeight}px`;
+
             // 구글 시트 웹앱 전송 API 호출 (URL 파라미터 + JSON 바디 둘 다 전송하여 호환성 극대화)
             const webAppUrl = 'https://script.google.com/macros/s/AKfycbx5qVcbDVfVS_EZVw5lGz8qDa09TK2b-SjgF_XYGI_xEGiplGXXr4RTwYxUJjbF8uhL0Q/exec';
             const timestamp = new Date().toLocaleString('ko-KR');
@@ -1044,7 +1049,14 @@
                 const formContent = document.getElementById('prayer-form-content');
                 formContent.style.display = 'block';
                 document.getElementById('prayer-input').value = '';
-                setTimeout(() => formContent.classList.remove('fade-out-simple'), 50);
+                setTimeout(() => {
+                    formContent.classList.remove('fade-out-simple');
+                    // 입력 폼 복원 애니메이션(0.6초) 완료 후 카드 높이 고정 해제
+                    setTimeout(() => {
+                        const card = document.getElementById('prayer-card');
+                        card.style.height = '';
+                    }, 600);
+                }, 50);
             }, 500);
         }
 
